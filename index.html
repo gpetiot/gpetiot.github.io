@@ -1,24 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
     <title>Guillaume Petiot</title>
+    <style type="text/css">
+      body { margin: auto 7%; }
+      .extern-link, .intern-link { color: #6AB3EC; }
+      .extern-link:hover, .intern-link:hover { color: #3C9CE7; }
+      .subtitle {}
+      .email { font-family: monospace; }
+      .email:before { content: "e-mail:"; margin-right: 4px; font-family: initial; }
+      .social-networks { text-align: center; display: none; }
+      .pub .authors { display: block; }
+      .pub .title { display: block; }
+      .pub .conf { display: block; }
+      .pub .notice { font-size: 75%; }
+    </style>
   </head>
   <body>
     <h1>Guillaume Petiot</h1>
-    <p>
+    <p class="subtitle">
       Postdoctoral researcher at
-      <a href="http://www-verimag.imag.fr">VERIMAG</a>
+      <a href="http://www-verimag.imag.fr" class="extern-link">VERIMAG</a>
+      <br />
+      <span class="email">g (DOT) petiot (AT) mail (DOT) com</span>
     </p>
-    <p>
+    <p class="social-networks">
       <a
-	 href="https://fr.linkedin.com/pub/guillaume-petiot/24/29a/b85"
+	 href="http://fr.linkedin.com/pub/guillaume-petiot/24/29a/b85"
 	 style="text-decoration:none;">
 	<img
-	   src="https://static.licdn.com/scds/common/u/img/webpromo/btn_in_20x15.png"
+	   src="http://static.licdn.com/scds/common/u/img/webpromo/btn_in_20x15.png"
 	   width="20"
 	   height="15"
 	   alt="See my LinkedIn profile"
 	   style="vertical-align:middle;"
-	   border="0">
+	   border="0" />
+      </a>
+      <a href="http://twitter.com/GuillaumePetiot"
+	 style="text-decoration:none;">
+	<img src="http://g.twimg.com/Twitter_logo_blue.png"
+	     alt="See my Twitter profile"
+	     width="20"
+	     height="20"
+	     style="vertical-align:middle;"
+	     border="0" />
+      </a>
+      <a href="http://github.com/gpetiot"
+	 style="text-decoration:none;">
+	<img src="http://help.github.com/assets/images/site/invertocat.png"
+	     alt="See my GitHub profile"
+	     width="20"
+	     height="20"
+	     style="vertical-align:middle;"
+	     border="0" />
       </a>
     </p>
 
@@ -27,87 +62,154 @@
     <ul>
       <li>software verification</li>
       <li>combined static and dynamic analysis</li>
+      <li>runtime verification</li>
       <li>functional programming</li>
     </ul>
     
     Currently working on fault injection and software countermeasure evaluation
-    with <a href="http://www-verimag.imag.fr/~potet">Marie-Laure Potet</a>
-    and <a href="http://www-verimag.imag.fr/~dureuil">Louis Dureuil</a>
-    at <a href="http://www-verimag.imag.fr">VERIMAG</a>.
+    with <a href="http://www-verimag.imag.fr/~potet"
+	    class="extern-link">Marie-Laure Potet</a>
+    and <a href="http://www-verimag.imag.fr/~dureuil"
+	   class="extern-link">Louis Dureuil</a>
+    at <a href="http://www-verimag.imag.fr" class="extern-link">VERIMAG</a>.
     Previously worked on combination of deductive verification and automatic
     test generation
-    with <a href="http://kosmatov.perso.sfr.fr/nikolai/">Nikolai Kosmatov</a>,
-    <a href="http://www.femto-st.fr/fr/Annuaire/u-300036-Jacques-JULLIAND/L">
+    with <a href="http://kosmatov.perso.sfr.fr/nikolai/"
+	    class="extern-link">Nikolai Kosmatov</a>,
+    <a href="http://www.femto-st.fr/fr/Annuaire/u-300036-Jacques-JULLIAND/L"
+       class="extern-link">
       Jacques Julliand</a>
-    and <a href="http://members.femto-st.fr/alain-giorgetti/">
+    and <a href="http://members.femto-st.fr/alain-giorgetti/"
+	   class="extern-link">
       Alain Giorgetti</a>
-    at <a href="http://www-list.cea.fr">CEA LIST</a>
+    at <a href="http://www-list.cea.fr" class="extern-link">CEA LIST</a>
     and Univ. de Franche-Comt&eacute;.
     Also worked on runtime verification of E-ACSL annotations
     with Nikolai Kosmatov
-    and <a href="http://julien.signoles.free.fr/">Julien Signoles</a>
+    and <a href="http://julien.signoles.free.fr/"
+	   class="extern-link">Julien Signoles</a>
     at CEA LIST.
 
-    <h3>Selected publications</h3>
+    <h3>PhD Thesis</h3>
+
+    <p class="pub">
+      <span class="title">
+	Contribution &agrave; la v&eacute;rification de programmes C par
+	combinaison de tests et de preuves.
+      </span>
+      <span class="authors">
+	Guillaume Petiot.
+      </span>
+      <span class="conf">
+	in french, defended on Nov 04, 2015.
+      </span>
+      <a href="#" class="intern-pdf">[pdf]</a>
+    </p>
+
+    <h3>Publications</h3>
 
     <h4>2015</h4>
     <ul>
-      <li>
-	Richard Genestier, Alain Giorgetti, Guillaume Petiot.
-	Sequential Generation of Structured Arrays and Its Deductive Verification.
-	In Proc. of the 9th International Conference on Tests & Proofs (TAP 2015),
-	L'Aquila, Italy, July 2015, pages 109-128. LNCS 9154. Springer. ISBN 978-3-319-21215-9.
-	<a href="#">[pdf]</a>
-	This is the authors' final version of the work.
-	The final publication is available at http://link.springer.com. DOI 10.1007/978-3-319-21215-9_7
+      <li class="pub">
+	<span class="authors">
+	  Richard Genestier, Alain Giorgetti, Guillaume Petiot.
+	</span>
+	<span class="title">
+	  Sequential Generation of Structured Arrays and Its Deductive
+	  Verification.
+	</span>
+	<span class="conf">
+	  In Proc. of the 9th International Conference on Tests & Proofs
+	  (TAP 2015), L'Aquila, Italy, July 2015, pages 109-128.
+	  LNCS 9154. Springer. ISBN 978-3-319-21215-9.
+	</span>
+	<a href="#" class="intern-pdf">[pdf]</a>
+	<span class="notice">
+	  This is the authors' final version of the work.
+	  The final publication is available at http://link.springer.com.
+	  DOI 10.1007/978-3-319-21215-9_7
+	</span>
       </li>
     </ul>
 
     <h4>2014</h4>
     <ul>
-      <li>
-	Guillaume Petiot, Bernard Botella, Jacques Julliand, Nikolai Kosmatov, Julien Signoles.
-	Instrumentation of Annotated C Programs for Test Generation.
-	In Proc. of the 14th IEEE International Working Conference on Source Code Analysis and Manipulation (SCAM 2014),
-	Victoria, Canada, September 2014, pages 105-114. IEEE. ISBN 978-0-7695-5304-7.
-	<a href="#">[pdf]</a>
-	This is the authors' final version of the work.
-	The final publication is available at http://ieeexplore.ieee.org/. DOI 10.1109/SCAM.2014.19 
+      <li class="pub">
+	<span class="authors">
+	  Guillaume Petiot, Bernard Botella, Jacques Julliand, Nikolai Kosmatov,
+	  Julien Signoles.
+	</span>
+	<span class="title">
+	  Instrumentation of Annotated C Programs for Test Generation.
+	</span>
+	<span class="conf">
+	  In Proc. of the 14th IEEE International Working Conference on Source
+	  Code Analysis and Manipulation (SCAM 2014), Victoria, Canada,
+	  September 2014, pages 105-114. IEEE. ISBN 978-0-7695-5304-7.
+	</span>
+	<a href="#" class="intern-pdf">[pdf]</a>
+	<span class="notice">
+	  This is the authors' final version of the work.
+	  The final publication is available at http://ieeexplore.ieee.org/.
+	  DOI 10.1109/SCAM.2014.19
+	</span>
       </li>
 
-      <li>
-	Guillaume Petiot, Nikolai Kosmatov, Alain Giorgetti, Jacques Julliand.
-	How Test Generation Helps Software Specification and Deductive Verification in Frama-C.
-	In Proc. of the 8th International Conference on Tests & Proofs (TAP 2014),
-	York, UK, July 2014, pages 204-211. LNCS 8570. Springer. ISBN 978-3-319-09098-6.
-	<a href="#">[pdf]</a>
-	This is the authors' final version of the work.
-	The final publication is available at http://link.springer.com. DOI 10.1007/978-3-319-09099-3_16 
+      <li class="pub">
+	<span class="authors">
+	  Guillaume Petiot, Nikolai Kosmatov, Alain Giorgetti, Jacques Julliand.
+	</span>
+	<span class="title">
+	  How Test Generation Helps Software Specification and Deductive
+	  Verification in Frama-C.
+	</span>
+	<span class="conf">
+	  In Proc. of the 8th International Conference on Tests & Proofs
+	  (TAP 2014), York, UK, July 2014, pages 204-211. LNCS 8570. Springer.
+	  ISBN 978-3-319-09098-6.
+	</span>
+	<a href="#" class="intern-pdf">[pdf]</a>
+	<span class="notice">
+	  This is the authors' final version of the work.
+	  The final publication is available at http://link.springer.com.
+	  DOI 10.1007/978-3-319-09099-3_16
+	</span>
       </li>
     </ul>
 
     <h4>2013</h4>
     <ul>
-      <li>
-	Nikolai Kosmatov, Guillaume Petiot, Julien Signoles.
-	An Optimized Memory Monitoring for Runtime Assertion Checking of C Programs.
-	In Proc. of the 4th International Conference on Runtime Verification (RV 2013),
-	Rennes, France, September 2013, LNCS, vol. 8174, pages 167-182. Springer.
-	<a href="">[pdf]</a>
-	This is the authors' final version of the work.
-	The final publication is available at http://link.springer.com. DOI 10.1007/978-3-642-40787-1_10 
+      <li class="pub">
+	<span class="authors">
+	  Nikolai Kosmatov, Guillaume Petiot, Julien Signoles.
+	</span>
+	<span class="title">
+	  An Optimized Memory Monitoring for Runtime Assertion Checking of C
+	  Programs.
+	</span>
+	<span class="conf">
+	  In Proc. of the 4th International Conference on Runtime Verification
+	  (RV 2013), Rennes, France, September 2013, LNCS, vol. 8174,
+	  pages 167-182. Springer.
+	</span>
+	<a href="" class="intern-pdf">[pdf]</a>
+	<span class="notice">
+	  This is the authors' final version of the work.
+	  The final publication is available at http://link.springer.com.
+	  DOI 10.1007/978-3-642-40787-1_10
+	</span>
       </li>
     </ul>
 
     <h2>Software</h2>
     <ul>
       <li>
-	<a href="#">StaDy</a>:
-	a <a href="frama-c.com">Frama-C</a> plug-in using test generation to
-	assist deductive verification
+	<a href="#" class="intern-link">StaDy</a>:
+	a <a href="frama-c.com" class="extern-link">Frama-C</a> plug-in using
+	test generation to assist deductive verification
       </li>
       <li>
-	<a href="#">E-ACSL-mmodel</a>:
+	<a href="#" class="intern-link">E-ACSL-mmodel</a>:
 	a library for the runtime verification of E(xecutable)-ACSL annotations
 	in Frama-C
       </li>
