@@ -1,0 +1,12 @@
+body { margin: auto 7%; }
+.extern-link, .intern-link { color: #6AB3EC; }
+.extern-link:hover, .intern-link:hover { color: #3C9CE7; }
+.subtitle {}
+.email { font-family: monospace; }
+.email:before { content: "e-mail:"; margin-right: 4px; font-family: initial; }
+.social-networks { text-align: center; display: none; }
+.pub .authors { display: block; }
+.pub .title { display: block; }
+.pub .conf { display: block; }
+.pub .notice { font-size: 75%; }
+.pdf:before { content:url(icons/acrobat.gif); padding: 2px; }
