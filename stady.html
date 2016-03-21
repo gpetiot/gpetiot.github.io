@@ -7,8 +7,559 @@
   </head>
   <body>
     <h1>StaDy</h1>
+
+    <p class="info">
+      Note:
+      StaDy has been implemented as part of my Ph.D work at
+      <a href="http://www-list.cea.fr/en/">CEA-LIST</a>.
+      I do not own it, and cannot provide its source code.
+    </p>
     
-    <p>(in progress)</p>
+    <h2>Motivation</h2>
+
+    <p>
+      Among formal verification techniques, deductive verification consists in
+      establishing a rigorous mathematical proof that a given program meets its
+      specification.
+      When no confusion is possible, one also says that deductive verification
+      consists in "proving a program".
+      It requires that the program comes with a formal specification, usually
+      given in special comments called annotations, including function
+      contracts (with pre- and postconditions) and loop contracts (with loop
+      variants and invariants).
+      The weakest precondition calculus proposed by Dijkstra reduces any
+      deductive verification problem to establishing the validity of first-order
+      formulas called verification conditions.
+    </p>
+
+    <p>
+      In modular deductive verification of a function f calling another
+      function g, the roles of the pre- and postconditions of f and of the
+      callee g are dual.
+      The precondition of f is assumed and its postcondition must be proved,
+      while at any call of g in f, the precondition of g must be proved before
+      the call and its postcondition is assumed after the call.
+      The situation for a function f with one call to g is presented in the
+      figure below.
+      An arrow in this figure informally indicates that its initial point
+      provides a hypothesis for a proof of its final point.
+      For instance, the precondition Pre f of f and the postcondition Post g of
+      g provide hypotheses for a proof of the postcondition Post f of f.
+      The called function g is proved separately.
+    </p>
+    
+    <img src="images/weak_hypotheses.png"
+	 class="right-img"
+	 alt="Contracts are used as hypotheses during modular verification" />
+
+    <p>
+      One of the most important difficulties in deductive verification is the
+      manual processing of proof failures by the verification engineer since
+      proof failures may have several causes.
+      Indeed, a failure to prove Pre g may be due to a
+      non-compliance of the code to the specification: an error in the code
+      code1, or a wrong specification Pre f or Pre g itself that may
+      incorrectly formalize the requirements.
+      The verification can also remain inconclusive because of a prover
+      incapacity to finish a particular proof within an allocated time.
+    </p>
+
+    <p>
+      In many cases, it is extremely difficult for the verification engineer
+      to decide how to proceed: either suspect a non-compliance and look for an
+      error in the code or check the specification, or suspect a prover
+      incapacity, give up automatic proof and try to achieve an interactive
+      proof with a proof assistant (like Coq).
+    </p>
+
+    <p>
+      A failure to prove the postcondition Post f is even
+      more complex to analyze: along with a prover incapacity or a
+      non-compliance due to errors in the pieces of code code1 and code2 or an
+      incorrect specification Pre f or Post f, the failure can also result
+      from a too weak postcondition Post g of g, that does not fully express
+      the intended behavior of g.
+      Notice that in this last case, the proof of g can still be successful.
+      The current automated tools for program proving do not provide a precise
+      indication on the reason of the proof failure.
+      The most advanced tools (like Dafny) produce a counterexample extracted
+      from the underlying solver that cannot precisely indicate if the
+      verification engineer should look for a non-compliance, or strengthen
+      subcontracts (and which one of them), or consider adding additional
+      lemmas or using interactive proof.
+      So the verification engineer must basically consider all possible reasons
+      one after another, maybe also trying a very costly interactive proof.
+      For a loop, the situation is similar, and offers an additional challenge:
+      to prove the invariant preservation, whose failure can be due to several
+      reasons as well.
+    </p>
+    
+    <img src="images/dv_unknown.png"
+	 class="centered-img"
+	 alt="Deductive verification of a formally specified code does not
+	      succeed" />
+
+    <p>
+      The motivation of this work is twofold.
+      First, we want to provide the verification engineer with a more precise
+      feedback indicating the reason of each proof failure.
+      Second, we look for a counterexample that either confirms the
+      non-compliance and demonstrates that the unproven predicate can indeed
+      fail on a test datum, or confirms a subcontract weakness showing on a
+      test datum which subcontract is insufficient.
+    </p>
+
+    <h2>Approach</h2>
+    
+    <img src="images/stady_approach.png"
+	 class="right-img"
+	 alt="StaDy's approach: translation, then test generation" />
+    
+    <p>
+      The diagnosis of proof failures based on a counterexample generated by a
+      prover can be imprecise since from the prover's point of view, the code
+      of callees and loops in f is replaced by the corresponding subcontracts.
+      To make this diagnosis more precise, one should take into account their
+      code as well as their contracts.
+      We propose an alternative approach: to use advanced test generation
+      techniques in order to diagnose proof failures and produce
+      counterexamples.
+      Their usage requires a translation of the annotated C program into an
+      executable C code suitable for testing.
+    </p>
+
+    <p>
+      The overall goal of the present work is to provide a methodology for a
+      more precise identification of proof failure reasons in all these cases,
+      to implement it and to evaluate it in practice.
+      The proposed method is composed of two steps.
+      The first step looks for non-compliance.
+      If no non-compliance is detected, the second step looks for a subcontract
+      weakness.
+      Another goal is to make this method automatic and suitable for a
+      non-expert verification engineer.
+    </p>
+
+    The  StaDy methodology is presented in:
+    <p class="pub">
+      <span class="authors">
+	Guillaume Petiot, Nikolai Kosmatov, Alain Giorgetti, Jacques Julliand.
+      </span>
+      <span class="title">
+	How Test Generation Helps Software Specification and Deductive
+	Verification in Frama-C.
+      </span>
+      <span class="conf">
+	In Proc. of the 8th International Conference on Tests & Proofs
+	(TAP 2014), York, UK, July 2014, pages 204-211. LNCS 8570. Springer.
+	ISBN 978-3-319-09098-6.
+      </span>
+      <a href="pub/TAP_14.pdf" class="pdf">preprint version</a>
+      <span class="notice">
+	This is the authors' final version of the work.
+	The final publication is available at http://link.springer.com.
+	DOI 10.1007/978-3-319-09099-3_16
+      </span>
+    </p>
+
+    <p>
+      StaDy is implemented in OCaml (roughly 3k lines of code) as a
+      <a href="http://www.frama-c.com/">Frama-C</a> plug-in.
+      StaDy has been implemented as part of my Ph.D work at
+      <a href="http://www-list.cea.fr/en/">CEA-LIST</a>.
+      I do not own it, and cannot provide its source code.
+    </p>
+
+    StaDy is composed of two steps :
+    <ul>
+      <li>a translation step, producing an instrumented C program
+	from an annotated C program.
+	The ACSL annotations of the latter are translated in a semantically
+	equivalent C code, such that test generation can be applied;</li>
+      <li>a test generation step, trying to cover all feasible execution paths
+	of the program, exhibiting counterexamples if any, and reporting
+	annotation violations.
+	This step uses the
+	<a href="http://www.frama-c.com/pathcrawler.html">PathCrawler</a>
+	test generator.</li>
+    </ul>
+
+    The translation of ACSL annotations into semantically equivalent C code is
+    presented in:
+    <p class="pub">
+      <span class="authors">
+	Guillaume Petiot, Bernard Botella, Jacques Julliand, Nikolai Kosmatov,
+	Julien Signoles.
+      </span>
+      <span class="title">
+	Instrumentation of Annotated C Programs for Test Generation.
+      </span>
+      <span class="conf">
+	In Proc. of the 14th IEEE International Working Conference on Source
+	Code Analysis and Manipulation (SCAM 2014), Victoria, Canada,
+	September 2014, pages 105-114. IEEE. ISBN 978-0-7695-5304-7.
+      </span>
+      <a href="pub/SCAM_14.pdf" class="pdf">preprint version</a>
+      <span class="notice">
+	This is the authors' final version of the work.
+	The final publication is available at http://ieeexplore.ieee.org/.
+	DOI 10.1109/SCAM.2014.19
+      </span>
+    </p>
+
+    <h2>Features</h2>
+
+    <p>StaDy has two main features : non-compliance detection and subcontract
+      weakness detection.
+    </p>
+
+    <h3>Non-compliance detection</h3>
+
+    <p>
+      StaDy tries to exhibit a test case whose execution provokes an annotation
+      violation.
+      Non-compliance detection is the default mode of StaDy.
+      One can detect non-compliances between the code and its specification in
+      file F, starting with function M, using the command:
+    </p>
+    
+    <tt>frama-c F -main M -stady</tt>
+
+    <p>
+      In the user interface of Frama-C, an annotation violation is pictured with
+      a red bullet, as we can see in the screenshot below.
+    </p>
+
+    <h3>Subcontract weakness detection</h3>
+
+    <p>
+      StaDy tries to exhibit a test case whose execution does not provoke an
+      annotation violation but that is not proved by deductive verification
+      because of a too weak subcontract (loop invariant or called function
+      contract).
+      The subcontract weakness detection in file F starting with function M is
+      done with:
+    </p>
+
+    <tt>frama-c F -main M -stady -stady-swd C</tt>
+
+    <p>
+      where C is a comma-separated list of subcontract identifiers.
+      The subcontract identifiers are the statement identifiers of the
+      corresponding loops (for loop contracts) and function calls (for function
+      contracts).
+      For now, there is no strategy or heuristic implemented in StaDy to
+      automatically submit a set of subcontract identifiers.
+    </p>
+
+    <h2>Examples</h2>
+
+    <h3>Non-compliance detection</h3>
+
+    <p>Let us consider a small example of an array access:</p>
+
+    <pre>
+      /*@ requires \valid(buffer+(0..size-1)); */
+      int f( int * buffer, int size , int ind) {
+        return buffer [ind];
+      }
+    </pre>
+    
+    <p>
+      The function f takes a buffer, its size, and an index.
+      The precondition on the first line states that we can read and write in
+      <tt>buffer[0], ..., buffer[size-1]</tt>.
+    </p>
+    
+    <p>
+      First, we apply the RTE plug-in of Frama-C.
+      RTE adds an ACSL annotation just before the array access:
+    </p>
+
+    <pre>
+      /*@ assert rte: mem_access: \valid_read(buffer+ind); */
+    </pre>
+    
+    <p>
+      meaning that buffer has to be large enough so that <tt>buffer[ind]</tt>
+      can be read.
+      StaDy is then applied.
+      The full command with the call to RTE is:
+    </p>
+
+    <pre>
+      frama-c buffer.c -main f -rte -then -stady -stady-stop-when-assert-violated
+    </pre>
+
+    <p>
+      The option -stady-stop-when-assert-violated stops the test generation as
+      soon as an annotation violation is detected.
+      The assertion added by RTE is reported as non-compliant with the code,
+      here is the output of StaDy:
+    </p>
+    
+    <pre>
+      [stady] all-paths: true
+      [stady] 2 test cases
+      [stady] Non-Compliance of assert rte: mem_access: \valid_read(buffer+ind);
+      LOCATION: buffer.c:4
+      TEST DRIVER: testcases___sd_instru_buffer_f/f/testdrivers/TC_1.c
+      ind = -214739
+      size = 0
+    </pre>
+    
+    <p>
+      This means that for any buffer of size 0, trying to read the buffer at
+      size 0, will lead to a runtime error.
+      One can precise the precondition of f to get more meaningful results, we
+      add the following annotations:
+    </p>
+
+    <pre>
+      requires 0 <= ind;
+      requires 0 < size;
+    </pre>
+
+    <p>Applying StaDy again stills exhibits a counterexample:</p>
+
+    <pre>
+      [stady] all-paths: true
+      [stady] 4 test cases
+      [stady] Non-Compliance of assert rte: mem_access: \valid_read(buffer+ind);
+      LOCATION: buffer.c:7
+      TEST DRIVER: testcases___sd_instru_buffer_f/f/testdrivers/TC_1.c
+      buffer[0] = -214739
+      ind = 1073652710
+      size = 1
+    </pre>
+
+    <p>
+      This means that we cannot access <tt>buffer[1073652710]</tt> for a buffer
+      of size 1.
+      We finally correct the precondition:
+      <tt>requires 0 &lt;= ind &lt; size</tt>.
+      This time, there are no more error, so we won't stop at the first
+      annotation violation and we will try each size of buffer (as each size
+      follows its own program path).
+      Thus, we add a timeout to limit the exploration:
+    </p>
+    
+    <pre>
+      frama-c buffer.c -main f -rte -then -stady -stady-stop-when-assert-violated -stady-timeout 7
+    </pre>
+
+    <p>
+      The option -stady-timeout limits the time allocated to test generation,
+      here it cannot take more than 7 seconds.
+      And StaDy does not report any annotation violation:
+    </p>
+
+    <pre>
+      [stady] all-paths: true
+      [stady] 1177 test cases
+    </pre>
+
+    <h3>Subcontract weakness detection</h3>
+
+    <p>
+      Let us now consider a more complex program.
+      The function <tt>all_zeros</tt> below returns a non-zero value if and
+      only if, all the elements of the array <tt>t</tt> of size <tt>n</tt> are
+      non-zero.
+    </p>
+
+    <pre>
+      /*@ requires n&gt;=0 && \valid(t+(0..n-1));
+          assigns \nothing ;
+          ensures \result != 0 &lt;==&gt;
+		    ( \forall integer j; 0 &lt;= j &lt; n ==&gt; t[j] == 0);
+      */
+      int all_zeros ( int t[], int n) {
+        int k;
+        /*@ loop invariant 0 &lt;= k &lt;= n;
+            loop assigns k;
+            loop variant n-k;
+        */
+        for (k = 0; k &lt; n; k++)
+          if (t[k] != 0)
+            return 0;
+          return 1;
+      }
+    </pre>
+
+    <p>
+      The deductive verification of the program by the Wp plug-in of Frama-C
+      does not succeed:
+      the postcondition of the function <tt>all_zeros</tt> is not verified.
+    </p>
+    
+    <pre>
+      [wp] Running WP plugin...
+      [wp] Collecting axiomatic usage
+      [wp] warning: Missing RTE guards
+      [wp] 10 goals scheduled
+      [wp] [Qed] Goal typed_all_zeros_loop_inv_established : Valid
+      [wp] [Qed] Goal typed_all_zeros_loop_assign : Valid
+      [wp] [Qed] Goal typed_all_zeros_assign_part1 : Valid
+      [wp] [Qed] Goal typed_all_zeros_assign_part2 : Valid
+      [wp] [Qed] Goal typed_all_zeros_assign_part3 : Valid (1ms)
+      [wp] [Qed] Goal typed_all_zeros_assign_part4 : Valid (1ms)
+      [wp] [Qed] Goal typed_all_zeros_loop_term_decrease : Valid (1ms)
+      [wp] [Qed] Goal typed_all_zeros_loop_term_positive : Valid (1ms)
+      [wp] [Alt-Ergo] Goal typed_all_zeros_loop_inv_preserved : Valid (Qed:1ms) (44ms) (17)
+      [wp] [Alt-Ergo] Goal typed_all_zeros_post : Unknown (Qed:2ms) (507ms)
+      [wp] Proved goals: 9 / 10
+      Qed:      8 (0ms-1ms)
+      Alt-Ergo: 1 (44ms-44ms) (17) (unknown: 1)
+    </pre>
+
+    <p>
+      We can apply StaDy to look for a non-compliance between the code and
+      its specification.
+    </p>
+
+    <pre>
+      frama-c all_zeros.c -main all_zeros -stady -stady-stop-when-assert-violated -stady-timeout 5
+    </pre>
+
+    <pre>
+      [stady] all-paths: true
+      [stady] 19246 test cases
+    </pre>
+
+    <p>
+      StaDy did not exhibit any counterexample of non-compliance.
+      An enlightened user may get the feeling that the program is correct but
+      insufficiently specified.
+      We re-apply StaDy to look for counterexamples exhibiting subcontract
+      weaknesses:
+    </p>
+    
+    <pre>
+      frama-c all_zeros.c -main all_zeros -stady -stady-swd 2 -stady-stop-when-assert-violated
+    </pre>
+
+    <p>
+      Here, 2 is the identifier of the loop and its contract, it is retrieved
+      by clicking on the beginning of the while loop in the GUI of Frama-C.
+    </p>
+    
+    <pre>
+      [stady] all-paths: true
+      [stady] 57 test cases
+      [stady] Subcontract Weakness of stmt 2 for ensures
+      \result != 0 &lt;==&gt;
+	(\forall integer j;
+	0 &lt;= j &lt; \old(n) ==&gt; *(\old(t)+j) == 0)
+      LOCATION: all_zeros_unproved_1.c:12
+      TEST DRIVER: testcases___[...]/all_zeros/testdrivers/TC_9.c
+      n = 1
+      nondet_sint_val[0] = 1
+      return value = -- OUTPUT: 1 (1)
+      t[0] = 6432
+    </pre>
+
+    <p>
+      This output means that the loop contract (<tt>stmt 2</tt>) is not strong
+      enough for the postcondition of the function.
+      The counterexample has to be read as follows:
+      <ul>
+	<li>we consider as inputs : <tt>n = 1, t[0] = 6432</tt></li>
+	<li>we replace the execution of the loop by the most general code
+	  satisfying its loop contract, that is:
+	  <ul>
+	    <li>only <tt>k</tt> can be modified</li>
+	    <li>the new value of <tt>k</tt> has to satisfy
+	      <tt>0 &lt;= k &lt;= n</tt></li>
+	  </ul>
+	</li>
+	<li>a non-deterministic value is thus assigned to <tt>k</tt>:
+	  <tt>k = 1</tt> (designated by <tt>nondet_sint_val[0]</tt> in the
+	  feedback of StaDy)</li>
+      </ul>
+
+    <p>
+      However, this new code for the loop does not change the return value of
+      the function to 0 when one of the element is non-zero, so the new
+      function always returns 1 (<tt>OUTPUT: 1</tt> in the feedback of StaDy).
+      We now realize that we might need a loop invariant over the values of the
+      array elements.
+      We add such a loop invariant (highlighted in yellow):
+    </p>
+
+    <pre>
+      /*@ requires n&gt;=0 && \valid(t+(0..n-1));
+          assigns \nothing;
+          ensures \result != 0 &lt;==&gt;
+           ( \forall integer j; 0 &lt;= j &lt; n ==&gt; t[j] == 0);
+      */
+      int all_zeros ( int t[], int n) {
+        int k;
+        /*@ loop invariant 0 &lt;= k &lt;= n;
+            <span style="background-color:yellow;">loop invariant \forall integer j; 0&lt;=j&lt;k ==&gt; t[j]==0;</span>
+            loop assigns k;
+            loop variant n-k;
+	*/
+        for (k = 0; k &lt; n; k++)
+          if (t[k] != 0)
+            return 0;
+        return 1;
+      }
+    </pre>
+
+    <p>
+      With this new loop invariant, StaDy does not exhibit any counterexample
+      of contract weakness:
+    </p>
+    
+    <pre>
+      frama-c all_zeros.c -main all_zeros -stady -stady-swd 2 -stady-timeout 5 -stady-stop-when-assert-violated
+    </pre>
+    
+    <pre>
+      [stady] all-paths: true
+      [stady] 30002 test cases
+    </pre>
+
+    <p>And the program can now be formally verified with Wp:</p>
+    
+    <pre>
+      [wp] Running WP plugin...
+      [wp] Collecting axiomatic usage
+      [wp] warning: Missing RTE guards
+      [wp] 12 goals scheduled
+      [wp] [Qed] Goal typed_all_zeros_loop_inv_established : Valid
+      [wp] [Qed] Goal typed_all_zeros_loop_inv_2_established : Valid
+      [wp] [Qed] Goal typed_all_zeros_loop_assign : Valid
+      [wp] [Alt-Ergo] Goal typed_all_zeros_loop_inv_2_preserved : Valid (Qed:1ms) (23ms) (24)
+      [wp] [Alt-Ergo] Goal typed_all_zeros_loop_inv_preserved : Valid (Qed:1ms) (29ms) (17)
+      [wp] [Alt-Ergo] Goal typed_all_zeros_post : Valid (Qed:3ms) (37ms) (54)
+      [wp] [Qed] Goal typed_all_zeros_assign_part1 : Valid
+      [wp] [Qed] Goal typed_all_zeros_assign_part2 : Valid	
+      [wp] [Qed] Goal typed_all_zeros_assign_part3 : Valid (1ms)
+      [wp] [Qed] Goal typed_all_zeros_assign_part4 : Valid
+      [wp] [Qed] Goal typed_all_zeros_loop_term_decrease : Valid (1ms)
+      [wp] [Qed] Goal typed_all_zeros_loop_term_positive : Valid (1ms)
+      [wp] Proved goals: 12 / 12
+      Qed:      9 (0ms-3ms)
+      Alt-Ergo: 3 (23ms-37ms) (54)
+    </pre>
+
+    <h2>GUI of StaDy</h2>
+
+    <p>
+      The GUI of the StaDy plug-in is displayed in the screenshot below.
+      The red bullet means that the postcondition <tt>ensures is_rgf(a,n)</tt>
+      does not hold.
+      The bottom panel displays information about the annotation: the
+      verification verdicat (non-compliance), its location, the counterexample
+      found by PathCrawler (value for each input) and the test driver to replay
+      the counterexample.
+    </p>
+    
+    <img src="images/stady_screenshot.png"
+	 class="centered-img"
+	 alt="Screenshot of the StaDy plug-in of Frama-C" />
     
     <p><a href="index.html" class="intern-link">Back to homepage</a></p>
   </body>
