@@ -1,6 +1,6 @@
 body { margin: auto 14%; font-family: Arial; }
-.extern-link, .intern-link { color: #6AB3EC; }
-.extern-link:hover, .intern-link:hover { color: #3C9CE7; }
+.extern-link, .intern-link { color: #003399; }
+.extern-link:hover, .intern-link:hover { color: #0066CC; }
 .subtitle {}
 .email { font-family: monospace; }
 .email:before { content: "e-mail:"; margin-right: 4px; font-family: initial; }
