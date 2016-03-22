@@ -1,4 +1,4 @@
-body { margin: auto 14%; }
+body { margin: auto 14%; font-family: Arial; }
 .extern-link, .intern-link { color: #6AB3EC; }
 .extern-link:hover, .intern-link:hover { color: #3C9CE7; }
 .subtitle {}
