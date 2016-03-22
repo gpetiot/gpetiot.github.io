@@ -33,19 +33,22 @@
     </p>
 
     <p>
-      In modular deductive verification of a function f calling another
-      function g, the roles of the pre- and postconditions of f and of the
-      callee g are dual.
-      The precondition of f is assumed and its postcondition must be proved,
-      while at any call of g in f, the precondition of g must be proved before
+      In modular deductive verification of a function <tt>f</tt> calling another
+      function <tt>g</tt>, the roles of the pre- and postconditions of
+      <tt>f</tt> and of the callee <tt>g</tt> are dual.
+      The precondition of <tt>f</tt> is assumed and its postcondition must be
+      proved, while at any call of <tt>g</tt> in <tt>f</tt>, the precondition of
+      <tt>g</tt> must be proved before
       the call and its postcondition is assumed after the call.
-      The situation for a function f with one call to g is presented in the
-      figure below.
+      The situation for a function <tt>f</tt> with one call to <tt>g</tt> is
+      presented in the figure below.
       An arrow in this figure informally indicates that its initial point
       provides a hypothesis for a proof of its final point.
-      For instance, the precondition Pre f of f and the postcondition Post g of
-      g provide hypotheses for a proof of the postcondition Post f of f.
-      The called function g is proved separately.
+      For instance, the precondition <i>Pre<sub><tt>f</tt></sub></i> of
+      <tt>f</tt> and the postcondition <i>Post<sub><tt>g</tt></sub></i> of
+      <tt>g</tt> provide hypotheses for a proof of the postcondition
+      <i>Post<sub><tt>f</tt></sub></i> of <tt>f</tt>.
+      The called function <tt>g</tt> is proved separately.
     </p>
     
     <img src="images/weak_hypotheses.png"
@@ -56,10 +59,11 @@
       One of the most important difficulties in deductive verification is the
       manual processing of proof failures by the verification engineer since
       proof failures may have several causes.
-      Indeed, a failure to prove Pre g may be due to a
+      Indeed, a failure to prove <i>Pre<sub><tt>g</tt></sub></i> may be due to a
       non-compliance of the code to the specification: an error in the code
-      code1, or a wrong specification Pre f or Pre g itself that may
-      incorrectly formalize the requirements.
+      <tt>code1</tt>, or a wrong specification <i>Pre<sub><tt>f</tt></sub></i>
+      or <i>Pre<sub><tt>g</tt></sub></i> itself that may incorrectly formalize
+      the requirements.
       The verification can also remain inconclusive because of a prover
       incapacity to finish a particular proof within an allocated time.
     </p>
@@ -73,13 +77,16 @@
     </p>
 
     <p>
-      A failure to prove the postcondition Post f is even
-      more complex to analyze: along with a prover incapacity or a
-      non-compliance due to errors in the pieces of code code1 and code2 or an
-      incorrect specification Pre f or Post f, the failure can also result
-      from a too weak postcondition Post g of g, that does not fully express
-      the intended behavior of g.
-      Notice that in this last case, the proof of g can still be successful.
+      A failure to prove the postcondition <i>Post<sub><tt>f</tt></sub></i> is
+      even more complex to analyze: along with a prover incapacity or a
+      non-compliance due to errors in the pieces of code <tt>code1</tt> and
+      <tt>code2</tt> or an incorrect specification
+      <i>Pre<sub><tt>f</tt></sub></i> or <i>Post<sub><tt>f</tt></sub></i>, the
+      failure can also result from a too weak postcondition
+      <i>Post<sub><tt>g</tt></sub></i> of <tt>g</tt>, that does not fully
+      express the intended behavior of <tt>g</tt>.
+      Notice that in this last case, the proof of <tt>g</tt> can still be
+      successful.
       The current automated tools for program proving do not provide a precise
       indication on the reason of the proof failure.
       The most advanced tools (like Dafny) produce a counterexample extracted
@@ -170,7 +177,7 @@
       I do not own it, and cannot provide its source code.
     </p>
 
-    StaDy is composed of two steps :
+    StaDy is composed of two steps:
     <ul>
       <li>a translation step, producing an instrumented C program
 	from an annotated C program.
@@ -209,7 +216,7 @@
 
     <h2>Features</h2>
 
-    <p>StaDy has two main features : non-compliance detection and subcontract
+    <p>StaDy has two main features: non-compliance detection and subcontract
       weakness detection.
     </p>
 
@@ -464,7 +471,7 @@
       enough for the postcondition of the function.
       The counterexample has to be read as follows:
       <ul>
-	<li>we consider as inputs : <tt>n = 1, t[0] = 6432</tt></li>
+	<li>we consider as inputs: <tt>n = 1, t[0] = 6432</tt></li>
 	<li>we replace the execution of the loop by the most general code
 	  satisfying its loop contract, that is:
 	  <ul>
