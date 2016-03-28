@@ -1,10 +1,13 @@
-body { margin: auto 14%; font-family: Arial; }
+body { margin: auto 14%; font-family: Arial; text-align: justify; }
+h1 { text-align: center; color: #455; }
+h2 { color: #455; border-bottom: 1px solid #acc; }
 #menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #666;
+    border-radius: 10px;
 }
 #menu li {
     float: left;
@@ -21,7 +24,7 @@ body { margin: auto 14%; font-family: Arial; }
     text-decoration: none;
 }
 #menu li a:hover {
-    background-color: #111;
+    background-color: #777;
 }
 #menu li a.active {
     background-color: #0066FF;
