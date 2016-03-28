@@ -13,7 +13,79 @@
     </ul>
     
     <h1>E-ACSL-mmodel</h1>
+
+    <p>
+      E-ACSL-mmodel is a library for the runtime verification of
+      E(xecutable)-ACSL annotations in Frama-C.
+    </p>
+
+    <p>
+      This library is part of the
+      <a href="http://frama-c.com/eacsl.html"
+	 class="extern-link">E-ACSL plug-in</a> of
+      <a href="http://frama-c.com/" class="extern-link">Frama-C</a>.
+      The Frama-C's E-ACSL plug-in automatically translates an annotated C
+      program into another program that fails at runtime if an annotation is
+      violated.
+      If no annotation is violated, the behavior of the new program is exactly
+      the same as the one of the original program.
+    </p>
+
+    <p>
+      This library provides primitives for both evaluating memory-related E-ACSL
+      annotations and recording information on allocation, deallocation and
+      initialization of memory blocks at runtime.
+      It is designed to be generic, so that any data structure can be used to
+      store the memory-metadata.
+      The E-ACSL plug-in uses an efficient Patricia Trie implementation.
+    </p>
+
+    <!--
+    <p>
+      We can see below the four layers of the library, from the lower layer (on
+      the right-hand side) to the upper layer (on the left-hand side):
+    </p>
+    <ul>
+      <li>(1) access and request functions over the data structure. This layer
+	is generic, the public release uses a Patricia Trie implementation</li>
+      <li>(2) common interface with the underlying data structure implementation
+      </li>
+      <li>(3) functions for dynamic memory (de)allocation</li>
+      <li>(4) functions for request on annotations, these functions directly
+	map on E-ACSL annotations (<tt>\offset(x)</tt>, <tt>\valid(p)</tt>,
+	etc.)
+      </li>
+    </ul>
     
-    <p>(in progress)</p>
+    <img src="images/mmodel_architecture.png"
+	 class="centered-img"
+	 alt="memory-model architecture" />
+    -->
+
+    <p>
+      The library, the source-to-source transformation and experimental
+      results are presented in:
+    </p>
+    
+    <p class="pub">
+      <span class="authors">
+	Nikolai Kosmatov, Guillaume Petiot, Julien Signoles.
+      </span>
+      <span class="title">
+	An Optimized Memory Monitoring for Runtime Assertion Checking of C
+	Programs.
+      </span>
+      <span class="conf">
+	In Proc. of the 4th International Conference on Runtime Verification
+	(RV 2013), Rennes, France, September 2013, LNCS, vol. 8174,
+	pages 167-182. Springer.
+      </span>
+      <a href="pub/RV_13.pdf" class="pdf">preprint version</a>
+      <span class="notice">
+	This is the authors' final version of the work.
+	The final publication is available at http://link.springer.com.
+	DOI 10.1007/978-3-642-40787-1_10
+      </span>
+    </p>
   </body>
 </html>
