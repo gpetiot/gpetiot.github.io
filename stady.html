@@ -244,7 +244,9 @@
       file F, starting with function M, using the command:
     </p>
     
-    <tt>frama-c F -main M -stady</tt>
+    <pre class="term-in">
+      frama-c F -main M -stady
+    </pre>
 
     <p>
       In the user interface of Frama-C, an annotation violation is pictured with
@@ -262,7 +264,9 @@
       done with:
     </p>
 
-    <tt>frama-c F -main M -stady -stady-swd C</tt>
+    <pre class="term-in">
+      frama-c F -main M -stady -stady-swd C
+    </pre>
 
     <p>
       where C is a comma-separated list of subcontract identifiers.
@@ -312,7 +316,7 @@
       The full command with the call to RTE is:
     </p>
 
-    <pre>
+    <pre class="term-in">
       frama-c buffer.c -main f -rte -then -stady -stady-stop-when-assert-violated
     </pre>
 
@@ -323,7 +327,7 @@
       here is the output of StaDy:
     </p>
     
-    <pre>
+    <pre class="term-out">
       [stady] all-paths: true
       [stady] 2 test cases
       [stady] Non-Compliance of assert rte: mem_access: \valid_read(buffer+ind);
@@ -354,7 +358,7 @@
 
     <p>Applying StaDy again still exhibits a counterexample:</p>
 
-    <pre>
+    <pre class="term-out">
       [stady] all-paths: true
       [stady] 4 test cases
       [stady] Non-Compliance of assert rte: mem_access: \valid_read(buffer+ind);
@@ -389,7 +393,7 @@
       Thus, we add a timeout to limit the exploration:
     </p>
     
-    <pre>
+    <pre class="term-in">
       frama-c buffer.c -main f -rte -then -stady -stady-stop-when-assert-violated -stady-timeout 7
     </pre>
 
@@ -399,7 +403,7 @@
       And StaDy does not report any annotation violation:
     </p>
 
-    <pre>
+    <pre class="term-out">
       [stady] all-paths: true
       [stady] 1177 test cases
     </pre>
@@ -440,7 +444,7 @@
       the postcondition of the function <tt>all_zeros</tt> is not verified.
     </p>
     
-    <pre>
+    <pre class="term-out">
       [wp] Running WP plugin...
       [wp] Collecting axiomatic usage
       [wp] warning: Missing RTE guards
@@ -465,11 +469,11 @@
       its specification.
     </p>
 
-    <pre>
+    <pre class="term-in">
       frama-c all_zeros.c -main all_zeros -stady -stady-stop-when-assert-violated -stady-timeout 5
     </pre>
 
-    <pre>
+    <pre class="term-out">
       [stady] all-paths: true
       [stady] 19246 test cases
     </pre>
@@ -482,7 +486,7 @@
       weaknesses:
     </p>
     
-    <pre>
+    <pre class="term-in">
       frama-c all_zeros.c -main all_zeros -stady -stady-swd 2 -stady-stop-when-assert-violated
     </pre>
 
@@ -491,7 +495,7 @@
       by clicking on the beginning of the while loop in the GUI of Frama-C.
     </p>
     
-    <pre>
+    <pre class="term-out">
       [stady] all-paths: true
       [stady] 57 test cases
       [stady] Subcontract Weakness of stmt 2 for ensures
@@ -561,18 +565,18 @@
       of contract weakness:
     </p>
     
-    <pre>
+    <pre class="term-in">
       frama-c all_zeros.c -main all_zeros -stady -stady-swd 2 -stady-timeout 5 -stady-stop-when-assert-violated
     </pre>
     
-    <pre>
+    <pre class="term-out">
       [stady] all-paths: true
       [stady] 30002 test cases
     </pre>
 
     <p>And the program can now be formally verified with Wp:</p>
     
-    <pre>
+    <pre class="term-out">
       [wp] Running WP plugin...
       [wp] Collecting axiomatic usage
       [wp] warning: Missing RTE guards
