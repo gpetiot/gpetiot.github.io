@@ -4,6 +4,9 @@
   <head>
     <title>Guillaume Petiot -- StaDy</title>
     <link rel="stylesheet" type="text/css" href="basic.css" media="screen" />
+    <link rel="stylesheet" href="highlight/styles/default.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
   </head>
   <body>
     <ul id="menu">
@@ -276,12 +279,12 @@
 
     <p>Let us consider a small example of an array access:</p>
 
-    <pre>
+    <pre><code>
       /*@ requires \valid(buffer+(0..size-1)); */
       int f( int * buffer, int size , int ind) {
         return buffer [ind];
       }
-    </pre>
+    </code></pre>
     
     <p>
       The function f takes a buffer, its size, and an index.
@@ -294,9 +297,9 @@
       RTE adds an ACSL annotation just before the array access:
     </p>
 
-    <pre>
+    <pre><code>
       /*@ assert rte: mem_access: \valid_read(buffer+ind); */
-    </pre>
+    </code></pre>
     
     <p>
       meaning that buffer has to be large enough so that <tt>buffer[ind]</tt>
@@ -333,10 +336,10 @@
       add the following annotations:
     </p>
 
-    <pre>
+    <pre><code>
       requires 0 <= ind;
       requires 0 < size;
-    </pre>
+    </code></pre>
 
     <p>Applying StaDy again stills exhibits a counterexample:</p>
 
@@ -386,7 +389,7 @@
       non-zero.
     </p>
 
-    <pre>
+    <pre><code>
       /*@ requires n&gt;=0 && \valid(t+(0..n-1));
           assigns \nothing ;
           ensures \result != 0 &lt;==&gt;
@@ -403,7 +406,7 @@
             return 0;
           return 1;
       }
-    </pre>
+    </code></pre>
 
     <p>
       The deductive verification of the program by the Wp plug-in of Frama-C
@@ -505,7 +508,7 @@
       We add such a loop invariant (highlighted in yellow):
     </p>
 
-    <pre>
+    <pre><code>
       /*@ requires n&gt;=0 && \valid(t+(0..n-1));
           assigns \nothing;
           ensures \result != 0 &lt;==&gt;
@@ -523,7 +526,7 @@
             return 0;
         return 1;
       }
-    </pre>
+    </code></pre>
 
     <p>
       With this new loop invariant, StaDy does not exhibit any counterexample
