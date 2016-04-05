@@ -279,12 +279,14 @@
 
     <p>Let us consider a small example of an array access:</p>
 
-    <pre><code>
-      /*@ requires \valid(buffer+(0..size-1)); */
-      int f( int * buffer, int size , int ind) {
-        return buffer [ind];
-      }
-    </code></pre>
+    <pre>
+      <code>
+	/*@ requires \valid(buffer+(0..size-1)); */
+	int f(int * buffer, int size , int ind) {
+          return buffer[ind];
+	}
+      </code>
+    </pre>
     
     <p>
       The function f takes a buffer, its size, and an index.
@@ -297,9 +299,11 @@
       RTE adds an ACSL annotation just before the array access:
     </p>
 
-    <pre><code>
-      /*@ assert rte: mem_access: \valid_read(buffer+ind); */
-    </code></pre>
+    <pre>
+      <code>
+	/*@ assert rte: mem_access: \valid_read(buffer+ind); */
+      </code>
+    </pre>
     
     <p>
       meaning that buffer has to be large enough so that <tt>buffer[ind]</tt>
@@ -333,13 +337,20 @@
       This means that for any buffer of size 0, trying to read the buffer at
       size 0, will lead to a runtime error.
       One can precise the precondition of f to get more meaningful results, we
-      add the following annotations:
+      add the following preconditions (highlighted in yellow):
     </p>
 
-    <pre><code>
-      requires 0 <= ind;
-      requires 0 < size;
-    </code></pre>
+    <pre>
+      <code>
+	/*@ requires \valid(buffer+(0..size-1));
+	    <span class="highlight">requires 0 &lt;= ind;</span>
+	    <span class="highlight">requires 0 &lt; size;</span>
+	*/
+	int f(int * buffer, int size , int ind) {
+          return buffer[ind];
+	}
+      </code>
+    </pre>
 
     <p>Applying StaDy again still exhibits a counterexample:</p>
 
@@ -357,9 +368,22 @@
     <p>
       This means that we cannot access <tt>buffer[1073652710]</tt> for a buffer
       of size 1.
-      We finally correct the precondition:
-      <tt>requires 0 &lt;= ind &lt; size</tt>.
-      This time, there are no more error, so we won't stop at the first
+      We finally correct the precondition (highlighted in yellow):
+    </p>
+    
+    <pre>
+      <code>
+	/*@ requires \valid(buffer+(0..size-1));
+	    <span class="highlight">requires 0 &lt;= ind &lt; size;</span>
+	*/
+	int f(int * buffer, int size , int ind) {
+          return buffer[ind];
+	}
+      </code>
+    </pre>
+    
+    <p>
+      This time, there is no error, so we won't stop at the first
       annotation violation and we will try each size of buffer (as each size
       follows its own program path).
       Thus, we add a timeout to limit the exploration:
@@ -389,24 +413,26 @@
       non-zero.
     </p>
 
-    <pre><code>
-      /*@ requires n&gt;=0 && \valid(t+(0..n-1));
-          assigns \nothing ;
-          ensures \result != 0 &lt;==&gt;
+    <pre>
+      <code>
+	/*@ requires n&gt;=0 && \valid(t+(0..n-1));
+            assigns \nothing ;
+            ensures \result != 0 &lt;==&gt;
 		    ( \forall integer j; 0 &lt;= j &lt; n ==&gt; t[j] == 0);
-      */
-      int all_zeros ( int t[], int n) {
-        int k;
-        /*@ loop invariant 0 &lt;= k &lt;= n;
-            loop assigns k;
-            loop variant n-k;
-        */
-        for (k = 0; k &lt; n; k++)
-          if (t[k] != 0)
-            return 0;
-          return 1;
-      }
-    </code></pre>
+	*/
+	int all_zeros(int t[], int n) {
+          int k;
+          /*@ loop invariant 0 &lt;= k &lt;= n;
+              loop assigns k;
+              loop variant n-k;
+          */
+          for (k = 0; k &lt; n; k++)
+            if (t[k] != 0)
+              return 0;
+            return 1;
+        }
+      </code>
+    </pre>
 
     <p>
       The deductive verification of the program by the Wp plug-in of Frama-C
@@ -508,25 +534,27 @@
       We add such a loop invariant (highlighted in yellow):
     </p>
 
-    <pre><code>
-      /*@ requires n&gt;=0 && \valid(t+(0..n-1));
-          assigns \nothing;
-          ensures \result != 0 &lt;==&gt;
-           ( \forall integer j; 0 &lt;= j &lt; n ==&gt; t[j] == 0);
-      */
-      int all_zeros ( int t[], int n) {
-        int k;
-        /*@ loop invariant 0 &lt;= k &lt;= n;
-            <span class="highlight">loop invariant \forall integer j; 0&lt;=j&lt;k ==&gt; t[j]==0;</span>
-            loop assigns k;
-            loop variant n-k;
-	*/
-        for (k = 0; k &lt; n; k++)
-          if (t[k] != 0)
-            return 0;
-        return 1;
-      }
-    </code></pre>
+    <pre>
+      <code>
+	/*@ requires n&gt;=0 && \valid(t+(0..n-1));
+            assigns \nothing;
+            ensures \result != 0 &lt;==&gt;
+               ( \forall integer j; 0 &lt;= j &lt; n ==&gt; t[j] == 0);
+        */
+        int all_zeros(int t[], int n) {
+          int k;
+          /*@ loop invariant 0 &lt;= k &lt;= n;
+              <span class="highlight">loop invariant \forall integer j; 0&lt;=j&lt;k ==&gt; t[j]==0;</span>
+              loop assigns k;
+              loop variant n-k;
+	  */
+          for (k = 0; k &lt; n; k++)
+            if (t[k] != 0)
+              return 0;
+          return 1;
+        }
+      </code>
+    </pre>
 
     <p>
       With this new loop invariant, StaDy does not exhibit any counterexample
