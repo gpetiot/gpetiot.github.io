@@ -69,3 +69,4 @@ h2 { color: #455; border-bottom: 1px solid #acc; }
     background-color: #FFBABA;
     background-image: url('icons/error.png');
 }
+.highlight { background-color: yellow; }
