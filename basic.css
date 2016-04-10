@@ -48,6 +48,7 @@ h2 { color: #455; border-bottom: 1px solid #acc; }
     padding:15px 10px 15px 50px;
     background-repeat: no-repeat;
     background-position: 10px center;
+    border-radius: 10px;
 }
 .info {
     color: #00529B;
@@ -73,3 +74,4 @@ h2 { color: #455; border-bottom: 1px solid #acc; }
 .term-in {}
 .term-in:before { content: "$"; }
 .term-out {}
+code{ border-radius: 10px; }
