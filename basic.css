@@ -1,6 +1,10 @@
 body { margin: auto 14%; font-family: Arial; text-align: justify; }
 h1 { text-align: center; color: #455; }
-h2 { color: #455; border-bottom: 1px solid #acc; }
+h2 { color: #455; background-color: #ccc; border-radius: 10px;
+     padding: 2px 10px; border: 1px solid #aaa; }
+h2 .up { text-align: right; float: right; font-size: 75%; }
+a { color: #003399; }
+a:hover { color: #0066CC; }
 #menu {
     list-style-type: none;
     margin: 0;
@@ -29,8 +33,6 @@ h2 { color: #455; border-bottom: 1px solid #acc; }
 #menu li a.active {
     background-color: #0066FF;
 }
-.extern-link, .intern-link { color: #003399; }
-.extern-link:hover, .intern-link:hover { color: #0066CC; }
 .subtitle {}
 .email { font-family: monospace; }
 .email:before { content: "e-mail:"; margin-right: 4px; font-family: initial; }
