@@ -1,7 +1,8 @@
-body { margin: auto 14%; font-family: Arial; text-align: justify; }
-h1 { text-align: center; color: #455; }
-h2 { color: #455; background-color: #ccc; border-radius: 10px;
-     padding: 2px 10px; border: 1px solid #aaa; }
+body { margin: 50px 0; font-family: Arial; text-align: justify; color: #777; }
+h1 { text-align: center; color: #111; font-size: 2em; font-weight: lighter; }
+.subtitle { text-align: center; color: #ccc; border-bottom: 1px solid #ccc;
+	    padding-bottom: 25px; font-size: 1.5em; font-weight: lighter; }
+h2 { color: #aaa; font-weight: lighter; }
 a { color: #003399; }
 a:hover { color: #0066CC; }
 #menu {
@@ -9,33 +10,31 @@ a:hover { color: #0066CC; }
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #666;
-    border-radius: 10px;
+    background-color: #555;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 170px;
+    height: 100%;
 }
-#menu li {
-    float: left;
-    border-right: 1px solid #bbb;
-}
-#menu li:last-child {
-    border-right: none;
-}
+#menu li {}
 #menu li a {
     display: block;
     color: white;
-    text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 #menu li a:hover {
-    background-color: #777;
+    background-color: #888;
 }
 #menu li a.active {
     background-color: #0066FF;
 }
-.subtitle {}
+.social-networks { text-align: center; position: fixed; width: 170px; bottom: 0;
+		   left: 0; display: none; }
+#main { margin: auto 20px auto 190px; padding-left: 7em; padding-right: 7em; }
 .email { font-family: monospace; }
 .email:before { content: "e-mail:"; margin-right: 4px; font-family: initial; }
-.social-networks { text-align: center; display: none; }
 .pub .authors { display: block; }
 .pub .title { display: block; }
 .pub .conf { display: block; }
