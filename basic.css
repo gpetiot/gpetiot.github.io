@@ -35,8 +35,10 @@ a:hover { color: #0066CC; }
 #main { margin: auto 20px auto 190px; padding-left: 7em; padding-right: 7em; }
 .email { font-family: monospace; }
 .email:before { content: "e-mail:"; margin-right: 4px; font-family: initial; }
+.pub { list-style-type: none; margin-bottom: 25px; padding-left: 10px;
+       border-left: 4px solid #eee; }
 .pub .authors { display: block; }
-.pub .title { display: block; }
+.pub .title { display: block; font-weight: bolder; }
 .pub .conf { display: block; }
 .pub .notice { font-size: 75%; }
 .pdf:before { content:url(icons/acrobat.gif); padding: 2px; }
