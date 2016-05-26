@@ -2,7 +2,6 @@ body { margin: auto 14%; font-family: Arial; text-align: justify; }
 h1 { text-align: center; color: #455; }
 h2 { color: #455; background-color: #ccc; border-radius: 10px;
      padding: 2px 10px; border: 1px solid #aaa; }
-h2 .up { text-align: right; float: right; font-size: 75%; }
 a { color: #003399; }
 a:hover { color: #0066CC; }
 #menu {
