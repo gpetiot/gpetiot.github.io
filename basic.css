@@ -1,8 +1,8 @@
-body { margin: 50px 0; font-family: Arial; text-align: justify; color: #777; }
+body { margin: 50px 0; font-family: Arial; text-align: justify; color: #555; }
 h1 { text-align: center; color: #111; font-size: 2em; font-weight: lighter; }
-.subtitle { text-align: center; color: #ccc; border-bottom: 1px solid #ccc;
+.subtitle { text-align: center; color: #aaa; border-bottom: 1px solid #ccc;
 	    padding-bottom: 25px; font-size: 1.5em; font-weight: lighter; }
-h2 { color: #aaa; font-weight: lighter; }
+h2 { color: #777; font-weight: lighter; }
 a { color: #003399; }
 a:hover { color: #0066CC; }
 #menu {
