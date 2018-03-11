@@ -30,8 +30,6 @@ a:hover { color: #0066CC; }
 #menu li a.active {
     background-color: #0066FF;
 }
-.social-networks { text-align: center; position: fixed; width: 170px; bottom: 0;
-		   left: 0; display: none; }
 #main { margin: auto 20px auto 190px; padding-left: 7em; padding-right: 7em; }
 .email { font-family: monospace; }
 .email:before { content: "e-mail:"; margin-right: 4px; font-family: initial; }
