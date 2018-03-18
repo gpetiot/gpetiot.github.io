@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Guillaume Petiot</title>
+    <link rel="stylesheet" type="text/css" href="basic.css" media="screen" />
+  </head>
+  <body>
+    <ul id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="software.html" class="active">Software</a></li>
+    </ul>
+    
+    <div id="main">
+      <h1>Software</h1>
+
+      <div class="project">
+	<h2>StaDy</h2>
+
+	<p>
+	  StaDy is a
+	  <a href="http://frama-c.com/" class="extern-link">Frama-C</a> plug-in
+	  using test generation to assist deductive verification. The program is
+	  instrumented in a way such that automatic test generation (see the
+	  <a href="http://frama-c.com/pathcrawler.html">PathCrawler plug-in</a>)
+	  will produce counterexamples exhibiting a non-compliance (code non
+	  compliant with respect to its specification) or a contract weakness,
+	  thus explaining the failure of a program proof.
+	  StaDy is available
+	  <a href="https://github.com/gpetiot/Frama-C-StaDy">on GitHub</a>.
+	</p>
+      </div>
+
+      <div class="project">
+	<h2>E-ACSL-mmodel</h2>
+
+	<p>
+	  E-ACSL-mmodel is a C library for the runtime verification of
+	  E(xecutable)-ACSL annotations in Frama-C.
+	  The plug-in automatically translates an annotated C
+	  program into another program that fails at runtime if an annotation is
+	  violated.
+	  If no annotation is violated, the behavior of the new program is
+	  exactly the same as the one of the original program.
+	  This library provides primitives to evaluate memory-related
+	  E-ACSL annotations and to record memory operations at runtime.
+	  This library is part of the
+	  <a href="http://frama-c.com/eacsl.html"
+	     class="extern-link">E-ACSL plug-in</a> of
+	  <a href="http://frama-c.com/" class="extern-link">Frama-C</a>.
+	</p>
+      </div>
+
+      <p>
+	More projects
+	<a href="https://github.com/gpetiot?tab=repositories">on GitHub</a>
+      </p>
+
+    </div>
+  </body>
+</html>
