@@ -4,14 +4,21 @@ h1 { color: #06A; font-size: 2em; font-weight: lighter;
      text-transform: uppercase; margin-bottom: 40px; }
 .subtitle {
     color: #444;
-    border-bottom: 1px solid #ccc;
     margin-top: 0;
     margin-top: -45px;
-    padding-bottom: 50px;
-    margin-bottom: 50px;
     font-size: 1.5em;
     font-weight: lighter;
     text-transform: uppercase;
+}
+.email {
+    color: #777;
+    font-family: monospace;
+    margin-top: -25px;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ccc;
 }
 h2 { color: #777; font-weight: lighter; }
 a { color: #003399; }
@@ -39,7 +46,6 @@ a:hover { color: #0066CC; }
 #menu li a:hover { color: #111; }
 #menu li a.active { border-bottom: 5px solid #0066FF; }
 #main { margin: auto 20px; padding-left: 10em; padding-right: 10em; }
-.email { font-family: monospace; }
 .pub {
     list-style-type: none;
     margin-bottom: 25px;
