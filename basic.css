@@ -1,40 +1,51 @@
-body { margin: 50px 0; font-family: Arial; text-align: justify; color: #555; }
-h1 { text-align: center; color: #111; font-size: 2em; font-weight: lighter; }
-.subtitle { text-align: center; color: #aaa; border-bottom: 1px solid #ccc;
-	    padding-bottom: 25px; font-size: 1.5em; font-weight: lighter; }
+body { margin: 100px 0 50px 0; font-family: Arial; text-align: justify;
+       color: #222; }
+h1 { color: #06A; font-size: 2em; font-weight: lighter;
+     text-transform: uppercase; margin-bottom: 40px; }
+.subtitle {
+    color: #444;
+    border-bottom: 1px solid #ccc;
+    margin-top: 0;
+    margin-top: -45px;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    font-size: 1.5em;
+    font-weight: lighter;
+    text-transform: uppercase;
+}
 h2 { color: #777; font-weight: lighter; }
 a { color: #003399; }
 a:hover { color: #0066CC; }
 #menu {
-    list-style-type: none;
     margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #555;
+    padding-left: 10em;
+    padding-right: 10em;
     position: fixed;
     top: 0;
     left: 0;
-    width: 170px;
-    height: 100%;
+    width: 100%;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #ddd;
 }
-#menu li {}
+#menu li { float: left; }
 #menu li a {
     display: block;
-    color: white;
-    padding: 14px 16px;
+    color: #777;
+    padding: 10px 16px;
+    text-align: center;
     text-decoration: none;
 }
-#menu li a:hover {
-    background-color: #888;
-}
-#menu li a.active {
-    background-color: #0066FF;
-}
-#main { margin: auto 20px auto 190px; padding-left: 7em; padding-right: 7em; }
+#menu li a:hover { color: #111; }
+#menu li a.active { border-bottom: 5px solid #0066FF; }
+#main { margin: auto 20px; padding-left: 10em; padding-right: 10em; }
 .email { font-family: monospace; }
-.email:before { content: "e-mail:"; margin-right: 4px; font-family: initial; }
-.pub { list-style-type: none; margin-bottom: 25px; padding-left: 10px;
-       border-left: 4px solid #eee; }
+.pub {
+    list-style-type: none;
+    margin-bottom: 25px;
+    padding-left: 10px;
+    border-left: 4px solid #eee;
+}
 .pub .authors { display: block; }
 .pub .title { display: block; font-weight: bolder; }
 .pub .conf { display: block; }
@@ -71,18 +82,10 @@ a:hover { color: #0066CC; }
     background-image: url('icons/error.png');
 }
 .project {
-    border: 1px solid #aaa;
+    border-left: 4px solid #eee;
     margin: 40px 0px;
-    padding: 15px;
-    background-repeat: no-repeat;
-    background-position: 10px center;
-    border-radius: 10px;
+    padding-left: 15px;
 }
-.project h2 {
-    margin: 0 0 20px 0;
-}
-.project p {
-    padding: 0;
-    margin: 0;
-}
+.project h2 { margin: 0 0 20px 0; }
+.project p { padding: 0; margin: 0; }
 code{ border-radius: 10px; }
