@@ -1,5 +1,5 @@
-body { margin: 100px 0 50px 0; font-family: Arial; text-align: justify;
-       color: #222; }
+body { margin: 100px 0 50px 0; font-family: Arial, sans-serif;
+       text-align: justify; color: #222; }
 h1 { color: #06A; font-size: 2em; font-weight: lighter;
      text-transform: uppercase; margin-bottom: 40px; }
 .subtitle {
