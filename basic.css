@@ -1,7 +1,16 @@
-body { margin: 50px 0 50px 0; font-family: Arial, sans-serif;
-       text-align: justify; color: #222; }
-h1 { color: #06A; font-size: 2em; font-weight: lighter;
-     text-transform: uppercase; margin-bottom: 40px; }
+body {
+    margin: 50px 0 50px 0;
+    font-family: Arial, sans-serif;
+    text-align: justify;
+    color: #222;
+}
+h1 {
+    color: #06A;
+    font-size: 2em;
+    font-weight: lighter;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
 .email {
     color: #777;
     font-family: monospace;
@@ -11,9 +20,16 @@ h1 { color: #06A; font-size: 2em; font-weight: lighter;
     font-size: 1.5em;
     text-transform: uppercase;
 }
-h2 { color: #777; font-weight: lighter; }
-a { color: #003399; }
-a:hover { color: #0066CC; }
+h2 {
+    color: #777;
+    font-weight: lighter;
+}
+a {
+    color: #003399;
+}
+a:hover {
+    color: #0066CC;
+}
 #menu {
     padding-left: 10em;
     padding-right: 10em;
@@ -22,7 +38,9 @@ a:hover { color: #0066CC; }
     overflow: hidden;
     background-color: #ddd;
 }
-#menu li { float: left; }
+#menu li {
+    float: left;
+}
 #menu li a {
     display: block;
     color: #777;
@@ -30,7 +48,9 @@ a:hover { color: #0066CC; }
     text-align: center;
     text-decoration: none;
 }
-#menu li a:hover { color: #111; }
+#menu li a:hover {
+    color: #111;
+}
 #main {
     margin: auto 20px;
     padding-top: 20px;
@@ -43,13 +63,30 @@ a:hover { color: #0066CC; }
     padding-left: 10px;
     border-left: 4px solid #eee;
 }
-.pub .authors { display: block; }
-.pub .title { display: block; font-weight: bolder; }
-.pub .conf { display: block; }
-.pub .notice { font-size: 75%; }
-.pdf:before { content:url(icons/acrobat.gif); padding: 2px; }
-.centered-img { margin: 0 auto; display: block; }
-.right-img { float: right; }
+.pub .authors {
+    display: block;
+}
+.pub .title {
+    display: block;
+    font-weight: bolder;
+}
+.pub .conf {
+    display: block;
+}
+.pub .notice {
+    font-size: 75%;
+}
+.pdf:before {
+    content:url(icons/acrobat.gif);
+    padding: 2px;
+}
+.centered-img {
+    margin: 0 auto;
+    display: block;
+}
+.right-img {
+    float: right;
+}
 .info, .success, .warning, .error {
     border: 1px solid;
     margin: 10px 0px;
@@ -83,5 +120,10 @@ a:hover { color: #0066CC; }
     margin: 40px 0px;
     padding-left: 15px;
 }
-.project h2 { margin: 0 0 20px 0; }
-.project p { padding: 0; margin: 0; }
+.project h2 {
+    margin: 0 0 20px 0;
+}
+.project p {
+    padding: 0;
+    margin: 0;
+}
