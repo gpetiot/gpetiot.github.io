@@ -8,7 +8,6 @@ h1 {
     color: #06A;
     font-size: 2em;
     font-weight: lighter;
-    text-transform: uppercase;
     margin-bottom: 40px;
 }
 .email {
@@ -18,7 +17,6 @@ h1 {
     padding-bottom: 50px;
     margin-bottom: 50px;
     font-size: 1.5em;
-    text-transform: uppercase;
 }
 h2 {
     color: #777;
@@ -63,15 +61,12 @@ a:hover {
     padding-left: 10px;
     border-left: 4px solid #eee;
 }
-.pub .authors {
+.pub .authors, .pub .conf {
     display: block;
 }
 .pub .title {
     display: block;
     font-weight: bolder;
-}
-.pub .conf {
-    display: block;
 }
 .pub .notice {
     font-size: 75%;
@@ -79,51 +74,4 @@ a:hover {
 .pdf:before {
     content:url(icons/acrobat.gif);
     padding: 2px;
-}
-.centered-img {
-    margin: 0 auto;
-    display: block;
-}
-.right-img {
-    float: right;
-}
-.info, .success, .warning, .error {
-    border: 1px solid;
-    margin: 10px 0px;
-    padding:15px 10px 15px 50px;
-    background-repeat: no-repeat;
-    background-position: 10px center;
-    border-radius: 10px;
-}
-.info {
-    color: #00529B;
-    background-color: #BDE5F8;
-    background-image: url('icons/info.png');
-}
-.success {
-    color: #4F8A10;
-    background-color: #DFF2BF;
-    background-image:url('icons/success.png');
-}
-.warning {
-    color: #9F6000;
-    background-color: #FEEFB3;
-    background-image: url('icons/warning.png');
-}
-.error {
-    color: #D8000C;
-    background-color: #FFBABA;
-    background-image: url('icons/error.png');
-}
-.project {
-    border-left: 4px solid #eee;
-    margin: 40px 0px;
-    padding-left: 15px;
-}
-.project h2 {
-    margin: 0 0 20px 0;
-}
-.project p {
-    padding: 0;
-    margin: 0;
 }
