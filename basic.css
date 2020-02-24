@@ -1,8 +1,11 @@
+html {
+    background-color: #111;
+}
 body {
     margin: 0 0 50px 0;
     font-family: Arial, sans-serif;
     text-align: justify;
-    color: #222;
+    color: #aaa;
     font-size: 1.5em;
 }
 h1 {
@@ -14,11 +17,11 @@ h1 {
 .email {
     color: #777;
     font-family: monospace;
-    margin-top: -25px;
-    font-size: 1.5em;
+    margin-top: -15px;
+    font-size: 2em;
 }
 .job {
-    font-size: 1.5em;
+    font-size: 2em;
 }
 h2 {
     margin-top: 100px;
@@ -28,10 +31,10 @@ h2, h3 {
     font-weight: lighter;
 }
 a {
-    color: #003399;
+    color: #28E;
 }
 a:hover {
-    color: #0066CC;
+    color: #4AF;
 }
 #main {
     margin: auto 20px;
@@ -43,7 +46,7 @@ a:hover {
     list-style-type: none;
     margin-bottom: 25px;
     padding-left: 10px;
-    border-left: 4px solid #eee;
+    border-left: 4px solid #999;
     font-size: 0.75em;
 }
 .pub .authors, .pub .conf {
