@@ -1,12 +1,13 @@
 body {
-    margin: 50px 0 50px 0;
+    margin: 0 0 50px 0;
     font-family: Arial, sans-serif;
     text-align: justify;
     color: #222;
+    font-size: 1.5em;
 }
 h1 {
     color: #06A;
-    font-size: 2em;
+    font-size: 4em;
     font-weight: lighter;
     margin-bottom: 40px;
 }
@@ -14,11 +15,15 @@ h1 {
     color: #777;
     font-family: monospace;
     margin-top: -25px;
-    padding-bottom: 50px;
-    margin-bottom: 50px;
+    font-size: 1.5em;
+}
+.job {
     font-size: 1.5em;
 }
 h2 {
+    margin-top: 100px;
+}
+h2, h3 {
     color: #777;
     font-weight: lighter;
 }
@@ -28,38 +33,18 @@ a {
 a:hover {
     color: #0066CC;
 }
-#menu {
-    padding-left: 10em;
-    padding-right: 10em;
-    width: 100%;
-    list-style-type: none;
-    overflow: hidden;
-    background-color: #ddd;
-}
-#menu li {
-    float: left;
-}
-#menu li a {
-    display: block;
-    color: #777;
-    padding: 10px 16px;
-    text-align: center;
-    text-decoration: none;
-}
-#menu li a:hover {
-    color: #111;
-}
 #main {
     margin: auto 20px;
-    padding-top: 20px;
-    padding-left: 10em;
-    padding-right: 10em;
+    padding-top: 0;
+    padding-left: 4em;
+    padding-right: 4em;
 }
 .pub {
     list-style-type: none;
     margin-bottom: 25px;
     padding-left: 10px;
     border-left: 4px solid #eee;
+    font-size: 0.75em;
 }
 .pub .authors, .pub .conf {
     display: block;
@@ -72,6 +57,6 @@ a:hover {
     font-size: 75%;
 }
 .pdf:before {
-    content:url(icons/acrobat.gif);
+    content: url(icons/acrobat.gif);
     padding: 2px;
 }
